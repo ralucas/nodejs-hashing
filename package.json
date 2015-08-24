@@ -4,6 +4,7 @@
   "description": "Hashing walkthrough in Node.js",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,8 +19,10 @@
   "homepage": "https://github.com/ralucas/nodejs-hashing#readme",
   "dependencies": {
     "bcrypt": "^0.8.5",
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "glob": "^5.0.14",
+    "morgan": "^1.6.1",
     "passport": "^0.3.0",
     "pg": "^4.4.1",
     "pg-hstore": "^2.3.2",
