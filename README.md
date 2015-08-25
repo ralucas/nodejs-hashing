@@ -7,7 +7,10 @@ Given all the security breaches we've been seeing in the news lately, I've been 
 
 ### Hashing - What and Why?
 **What is password (or any plain text) hashing?**
-Hashing algorithms are one-way functions, meaning that you can't input a created hash and output the text. 
+Hashing algorithms are one-way functions, meaning that you can't input a created hash and output the text. So, the only way to know that the password is correct is to compare hash to hash, using the same hashing algorithm with the same input.  If all's that necessary is comparing a hash to hash, then aren't hashes easy to hack?  Yes, so that's why we're going to add something called a salt and also an encryption engine that stretches out the time it takes to create it.
+
+In this post, I'm going to use a `SHA256` algorithm and recommend
+ 
 
 I'll be building this basically from scratch, so it should be reasonably easy to follow along.  To get started, let's pull down a few libraries/frameworks: 
 * To get started just create a new directory and do `npm init`.
