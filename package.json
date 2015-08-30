@@ -4,7 +4,7 @@
   "description": "Hashing walkthrough in Node.js",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,8 +20,11 @@
   "dependencies": {
     "bcrypt": "^0.8.5",
     "body-parser": "^1.13.3",
+    "consolidate": "^0.13.1",
+    "errorhandler": "^1.4.2",
     "express": "^4.13.3",
     "glob": "^5.0.14",
+    "lodash": "^3.10.1",
     "morgan": "^1.6.1",
     "passport": "^0.3.0",
     "passport-local": "^1.0.0",

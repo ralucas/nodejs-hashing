@@ -3,7 +3,7 @@ var path = require('path');
 var glob = require('glob');
 var S = require('string');
 
-var config = require('../../config.json');
+var config = require('../config.json');
 
 var db = {};
 

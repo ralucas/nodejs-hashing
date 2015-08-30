@@ -1,0 +1,55 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+        <!-- Place favicon.ico in the root directory -->
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/5.5.2/css/foundation.css">
+        <link rel="stylesheet" href="css/styles.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+    </head>
+    <body>
+      <div class="container">
+        <% if (typeof(user) === 'undefined') { %>
+          <div class="row">
+            <h3 align="center" class="small-offset-4 small-4 columns">Test Login Form</h3>
+            <div class="small-4 columns end">
+              <label>Not a current user?</label>
+              <a href="#/register" class="button tiny secondary">Register</a>
+            </div>
+          </div>
+          <div class="row">
+            <form id="login" class="large-9 large-centered columns">
+              <label>Username:</label>
+              <input type="text" name="username" />
+              <label>Password:</label>
+              <input type="password" name="password" />
+              <input type="submit" class="button secondary expand" />
+            </form>
+            <div class="row">
+            </div>
+          </div>
+        <% } else { %>
+          <div class="row">
+            <div class="row">
+              <h3>Welcome to the app:</h3>
+              <h4><%= user.firstname + ' ' + user.lastname %></h4>
+              <h4>Username: <%= user.username %></h4>
+            </div>
+          </div>
+        <% } %>
+      </div>
+
+      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+      <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+      <script src="js/vendor/sjcl.js"></script>
+      <script src="js/main.js"></script>
+
+    </body>
+</html>
