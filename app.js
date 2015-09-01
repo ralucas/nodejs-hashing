@@ -21,7 +21,7 @@ app.engine('html', cons.lodash);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
 
-app.use(express.static(path.join(__dirname, '../client')));
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(errorHandler());
 
@@ -29,6 +29,10 @@ app.use(bodyParser());
 
 app.get('/', function(req, res) {
   res.render('index');
+});
+
+app.get('/register', function(req, res) {
+  res.render('register');
 });
 
 // Currently, we're going to assume anyone that hits
