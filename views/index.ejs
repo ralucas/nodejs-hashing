@@ -1,0 +1,12 @@
+<% include partials/header %>
+<div class="container">
+  <% if (typeof(user) === 'undefined') { %>
+    <% include partials/register %>
+  <% } else if (user && !user.loggedIn) { %>
+    <% include partials/login %>
+  <% } else if (user && user.loggedIn){ %>
+    <% include partials/home %>
+  <% } %>
+</div>
+<% include partials/footer %>
+

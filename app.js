@@ -9,6 +9,8 @@ var path = require('path');
 
 var cons = require('consolidate');
 var _ = require('lodash');
+var ejs = require('ejs');
+
 var bcrypt = require('bcrypt');
 
 var db = require('./db');
@@ -17,8 +19,8 @@ db.sequelize.sync();
 
 app.use(logger('dev'));
 
-app.engine('html', cons.lodash);
-app.set('view engine', 'html');
+app.engine('ejs', cons.ejs);
+app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -31,8 +33,8 @@ app.get('/', function(req, res) {
   res.render('index');
 });
 
-app.get('/register', function(req, res) {
-  res.render('register');
+app.get('/login', function(req, res) {
+  res.render('index', {user: true, loggedIn: false});
 });
 
 // Currently, we're going to assume anyone that hits
@@ -60,6 +62,7 @@ app.post('/register', function(req, res, next) {
   })
   .then(function(salt) {
     // now, let's create the password hash
+    // See the blog/readme for why this many iterations
     return Q.ninvoke(bcrypt, 'hash', newUser.password, salt); 
   })
   .then(function(hash) {
@@ -92,7 +95,8 @@ app.post('/login', function(req, res) {
      if (!isAuthenticated) return res.status(401).json({'message': 'Username or password is incorrect'});
      // if all's is good, let's redirect them home
      var userData = _.pick(existingUser, 'firstname', 'lastname', 'username');
-     return res.status(200).redirect('/home', userData);
+     _.extend(userData, {loggedIn: true});
+     return res.status(200).redirect('/', {user: userData});
    });
 });
 

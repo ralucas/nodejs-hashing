@@ -7,7 +7,7 @@ Given all the security breaches we've been seeing in the news lately, I've been 
 
 ### Hashing - What and Why?
 **What is password (or any plain text) hashing?**
-Hashing algorithms are one-way functions, meaning that you can't input a created hash and output the text. So, the only way to know that the password is correct is to compare hash to hash, using the same hashing algorithm with the same input.  If all's that necessary is comparing a hash to hash, then aren't hashes easy to hack?  Yes, so that's why we're going to add something called a salt and also an encryption engine that stretches out the time it takes to create it.
+Hashing algorithms are one-way functions, meaning that you can't input a created hash and output the text. So, the only way to know that the password is correct is to compare hash to hash, using the same hashing algorithm with the same input.  If all's that necessary is comparing a hash to hash, then aren't hashes easy to hack?  Yes, so that's why we're going to add something called a salt and also an encryption engine ([bcrypt](https://en.wikipedia.org/wiki/Bcrypt)) that stretches out the time it takes to create it.
 
 In this post, I'm going to use a `SHA256` algorithm and recommend
  
@@ -50,6 +50,7 @@ We do want to encrypt the password on the front-end.  The reasons for this is th
     * Some mitigation to potential man-in-the-middle attacks seeing the raw pw
     * Given what the NSA keeps coming out with...
   2. Your server never knows the raw password
+    * Logs, if placed in the user flow, will never show the plain-text password
 
 We're not going to salt the hash on the client-side because we'd have to send that salt to the server side, so it's not very useful in this case.  We'll salt on the server-side later...
 
@@ -66,7 +67,7 @@ The code for hashing the password that we'll put right below the comment:
 Okay, so we've got the client-side hashing and we're posting it to the server-side
 
 ### Server-side
-So, we'll create a very basic Express server (I simply copied their boilerplate server from the site).  We then need to add some middleware:
+So, we'll create a very basic Express server.  We then need to add some middleware:
 * Body-parser --- Parsing middleware--- `npm install body-parser --save`
 * Morgan --- Logging --- `npm install morgan --save` 
 

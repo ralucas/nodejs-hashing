@@ -21,6 +21,7 @@
     "bcrypt": "^0.8.5",
     "body-parser": "^1.13.3",
     "consolidate": "^0.13.1",
+    "ejs": "^2.3.4",
     "errorhandler": "^1.4.2",
     "express": "^4.13.3",
     "glob": "^5.0.14",
